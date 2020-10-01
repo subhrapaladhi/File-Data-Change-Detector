@@ -15,18 +15,18 @@ class FileHasher:
         self.hashArray = []
         
         start = 0
-        end = min(len(self.fileData),25)
+        end = min(len(self.fileData),5)
         
         while(start<len(self.fileData)):
+            if(end == len(self.fileData)+1):
+                break
             substr = self.fileData[start:end]
-            # print(substr)
+            print(substr)
             result = hashlib.sha256(substr).digest()
+            print(result)
             self.hashArray.append(result)
-            start = end
-            end = min(len(self.fileData),end+25)
-        
-        # for i in self.hashArray:
-        #     print(i)
+            start +=1 
+            end +=1
 
 fileHasher = FileHasher("./data.txt")
 fileHasher.readFileData()
