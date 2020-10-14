@@ -35,16 +35,13 @@ class FileHasher:
     def saveData(self):
         client = MongoClient("mongodb+srv://subhra:qWT6ZfofeDcQoXnn@cluster0.stksg.mongodb.net/change_detector?retryWrites=true&w=majority")
         db = client['change_detector']
-        collection = db['hashed_data']
+        collection = db['hasher_data']
 
         self.key = str(uuid.uuid4())[-12:]
         print("key = {}".format(self.key))
-        data = {"_id": self.key, "hashedData": self.hashArray, "unhashedData": self.unhashedDataArray}
-
-        # print(client.list_database_names())
-        # print(db.list_collection_names())
-        # x = collection.insert_one({"_id":"12345","name":"subhra"})
-        # print(x)
+        
+        data = {"_id": self.key, "hashedDataArray": self.hashArray, "unhashedDataArray": self.unhashedDataArray}
+        collection.insert_one(data)
 
 fileHasher = FileHasher("./data.txt")
 fileHasher.readFileData()
