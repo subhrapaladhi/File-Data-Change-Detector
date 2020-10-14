@@ -1,4 +1,5 @@
 import hashlib
+from pymongo import MongoClient
 
 class FileHasher:
     fileData = ""
@@ -27,7 +28,17 @@ class FileHasher:
             self.hashArray.append(result)
             start +=1 
             end +=1
+    def saveData(self):
+        client = MongoClient("mongodb+srv://subhra:qWT6ZfofeDcQoXnn@cluster0.stksg.mongodb.net/change_detector?retryWrites=true&w=majority")
+        db = client['change_detector']
+        collection = db['hashed_data']
+
+        print(client.list_database_names())
+        print(db.list_collection_names())
+        x = collection.insert_one({"_id":"12345","name":"subhra"})
+        print(x)
 
 fileHasher = FileHasher("./data.txt")
 fileHasher.readFileData()
 fileHasher.hasher()
+fileHasher.saveData()
