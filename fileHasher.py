@@ -3,9 +3,7 @@ from pymongo import MongoClient
 import uuid
 
 
-class FileHasher:
-    fileData = ""
-    
+class FileHasher:    
     def __init__(self, filename):
         self.filename = filename
 
@@ -35,13 +33,13 @@ class FileHasher:
     def saveData(self):
         client = MongoClient("mongodb+srv://subhra:qWT6ZfofeDcQoXnn@cluster0.stksg.mongodb.net/change_detector?retryWrites=true&w=majority")
         db = client['change_detector']
-        collection = db['hasher_data']
+        hasher_data = db['hasher_data']
 
         self.key = str(uuid.uuid4())[-12:]
         print("key = {}".format(self.key))
         
         data = {"_id": self.key, "hashedDataArray": self.hashArray, "unhashedDataArray": self.unhashedDataArray}
-        collection.insert_one(data)
+        hasher_data.insert_one(data)
 
 fileHasher = FileHasher("./data.txt")
 fileHasher.readFileData()
