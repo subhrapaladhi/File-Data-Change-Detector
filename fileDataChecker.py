@@ -51,22 +51,26 @@ class FileDataChecker:
                     origData = self.unhashedDataArray[i]
                     editedData = self.editedFileUnhashedDataArray[i]
                     print("Original Data: {} VS Edited Data: {}".format(origData,editedData))
-                i+=5
+                i+=1
 
         elif(oriLen > modLen):
             i = 0
             while(i<modLen):
-                origData = self.unhashedDataArray[i]
-                editedData = self.editedFileUnhashedDataArray[i]
-                print("initial||| Original Data: {} VS Edited Data: {}".format(origData,editedData))
                 if(self.hashArray[i] != self.editedFileHashArray[i]):
-                    print("!!!! Original Data: {} VS Edited Data: {} !!!!".format(origData,editedData))
-                    i+=5
-                    continue
+                    origData = self.unhashedDataArray[i]
+                    editedData = self.editedFileUnhashedDataArray[i]
+                    print("Original Data: {} VS Edited Data: {}".format(origData,editedData))
                 i+=1
-            temp = b" "
-            leftData = temp.join(self.unhashedDataArray[i:])
-            print("This data is left in the edited data: {}".format(leftData))
+
+            i = modLen
+            leftData = ""
+            while(i<oriLen):
+                temp = str(self.unhashedDataArray[i],"utf-8")
+                leftData += temp[-1]
+                i+=1
+
+            print("This data is not there in the edited data: {}".format(leftData))
+    
 
         else:       # modLen > orilen
             i = 0
@@ -75,10 +79,16 @@ class FileDataChecker:
                     origData = self.unhashedDataArray[i]
                     editedData = self.editedFileUnhashedDataArray[i]
                     print("Original Data: {} VS Edited Data: {}".format(origData,editedData))
-                i+=5
-            temp = b" "
-            leftData = temp.join(self.unhashedDataArray[i:])
-            print("leftData: {}".format(leftData))
+                i+=1
+
+            i = oriLen
+            leftData = ""
+            while(i<modLen):
+                temp = str(self.editedFileUnhashedDataArray[i],"utf-8")
+                leftData += temp[-1]
+                i+=1
+
+            print("This data is not there in the original data: {}".format(leftData))
 
 
 
