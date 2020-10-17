@@ -17,14 +17,14 @@ class FileHasher:
         self.unhashedDataArray = []
         
         start = 0
-        end = min(len(self.fileData),5)
+        end = min(len(self.fileData),3)
         
         while(start<len(self.fileData)):
             if(end == len(self.fileData)+1):
                 break
             substr = self.fileData[start:end]
             self.unhashedDataArray.append(substr)
-
+            # print(substr)
             result = hashlib.sha256(substr).digest()
             self.hashArray.append(result)
             start +=1 
@@ -40,8 +40,3 @@ class FileHasher:
         
         data = {"_id": self.key, "hashedDataArray": self.hashArray, "unhashedDataArray": self.unhashedDataArray}
         hasher_data.insert_one(data)
-
-fileHasher = FileHasher("./data.txt")
-fileHasher.readFileData()
-fileHasher.hasher()
-fileHasher.saveData()
