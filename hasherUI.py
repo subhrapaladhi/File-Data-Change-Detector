@@ -7,7 +7,7 @@ class HasherUI:
         self.root = Tk()
         self.root.geometry("400x300")
         
-        title = Label(self.root, text = "File Encrypter") 
+        title = Label(self.root, text = "File Hasher") 
         title.config(font =("Courier", 20))
         title.place(x=90,y=20)
 
@@ -15,8 +15,8 @@ class HasherUI:
 
     def chooseFile(self):
         inputFile = filedialog.askopenfile(mode="r")
-        self.fileName = inputFile.name
-        self.fileHasher = FileHasher(self.fileName)
+        # self.fileName = inputFile.name
+        self.fileHasher = FileHasher(inputFile.name)
         self.fileHasher.readFileData()
         self.saveData()
 

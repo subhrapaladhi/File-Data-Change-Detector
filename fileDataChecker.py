@@ -25,7 +25,7 @@ class FileDataChecker:
         self.editedFileUnhashedDataArray = []
         
         start = 0
-        end = min(len(self.fileData),5)
+        end = min(len(self.fileData),3)
         
         while(start<len(self.fileData)):
             if(end == len(self.fileData)+1):
@@ -89,11 +89,3 @@ class FileDataChecker:
                 i+=1
 
             print("This data is not there in the original data: {}".format(leftData))
-
-
-
-fileDataChecker = FileDataChecker("./data.txt","803471303176")
-fileDataChecker.readFileData()
-fileDataChecker.getHasherData()
-fileDataChecker.hasher()
-fileDataChecker.compareData()
