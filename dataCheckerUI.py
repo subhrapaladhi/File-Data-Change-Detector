@@ -5,31 +5,36 @@ from tkinter import filedialog
 class DataCheckerUI:
     def __init__(self):
         self.root = Tk()
-        self.root.geometry("400x300")
+        self.root.geometry("800x600")
         
         title = Label(self.root, text = "File Data Checker") 
-        title.config(font =("Courier", 20))
-        title.place(x=90,y=20)
+        title.config(font =("Courier", 35))
+        title.place(x=150,y=20)
 
         # key text input
         self.keyLabel = Label(self.root, text="Enter key: ")
-        self.keyLabel.place(x=65,y=80)
+        self.keyLabel.config(font =("Courier", 15))
+        self.keyLabel.place(x=220,y=120)
         self.passInput = Text(self.root,height=1,width=20)
-        self.passInput.place(x=100,y=80)
+        self.passInput.place(x=380,y=120)
 
         # choose button
         self.chooseBtn = Button(self.root, text="Choose File",command=self.chooseFile)
-        self.chooseBtn.place(x=150,y=180)
+        self.chooseBtn.place(x=330,y=350)
 
         # check data
         self.checkDataBtn = Button(self.root, text="Check Data",command=self.dataCheck)
-        self.checkDataBtn.place(x=150,y=220)
+        self.checkDataBtn.pack()
+        self.checkDataBtn.place(x=330,y=450)
+        # self.printResult()
+
     
     def chooseFile(self):
         inputFile = filedialog.askopenfile(mode="r")
         self.fileName = inputFile.name
         print(self.fileName)
-    
+
+
     def dataCheck(self):
         self.key = str(self.passInput.get(1.0,END)).strip()
         print("key = {}".format(self.key))
@@ -38,12 +43,20 @@ class DataCheckerUI:
         self.fileDataChecker.readFileData()
         self.fileDataChecker.getHasherData()
         self.fileDataChecker.hasher()
-        comparedResult = self.fileDataChecker.compareData()
+        self.comparedResult = self.fileDataChecker.compareData()
 
-        if(comparedResult == ""):
+        if(self.comparedResult == ""):
+            T = Text(self.root,height=25,width=98)
+            T.pack()
+            T.place(x=5,y=90)
+            T.insert(END,"The data in the two files are same")
             print("The data in the two files are same")
         else:
-            print(comparedResult)
+            T = Text(self.root,height=25,width=98)
+            T.pack()
+            T.place(x=5,y=90)
+            T.insert(END,self.comparedResult)
+            print(self.comparedResult)
 
 
 dataCheckerUI = DataCheckerUI()
