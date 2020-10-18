@@ -31,18 +31,20 @@ class DataCheckerUI:
         print(self.fileName)
     
     def dataCheck(self):
-        self.key = str(self.passInput.get(1.0,END))
+        self.key = str(self.passInput.get(1.0,END)).strip()
         print("key = {}".format(self.key))
 
+        self.fileDataChecker = FileDataChecker(self.fileName,self.key)
+        self.fileDataChecker.readFileData()
+        self.fileDataChecker.getHasherData()
+        self.fileDataChecker.hasher()
+        comparedResult = self.fileDataChecker.compareData()
 
+        if(comparedResult == ""):
+            print("The data in the two files are same")
+        else:
+            print(comparedResult)
 
 
 dataCheckerUI = DataCheckerUI()
 dataCheckerUI.root.mainloop()
-
-
-# fileDataChecker = FileDataChecker("./data.txt","a5e099824b50")
-# fileDataChecker.readFileData()
-# fileDataChecker.getHasherData()
-# fileDataChecker.hasher()
-# fileDataChecker.compareData()

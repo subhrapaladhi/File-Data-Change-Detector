@@ -5,7 +5,7 @@ class FileDataChecker:
     def __init__(self,filename,key):
         self.filename = filename
         self.key = key
-    
+
     def readFileData(self):
         file = open(self.filename,"rb")
         self.fileData = file.read()
@@ -15,7 +15,6 @@ class FileDataChecker:
         client = MongoClient("mongodb+srv://subhra:qWT6ZfofeDcQoXnn@cluster0.stksg.mongodb.net/change_detector?retryWrites=true&w=majority")
         db = client['change_detector']
         hasher_data = db['hasher_data']
-
         x = hasher_data.find_one({"_id":self.key})
         self.unhashedDataArray = x["unhashedDataArray"]
         self.hashArray = x["hashedDataArray"]
@@ -44,13 +43,15 @@ class FileDataChecker:
         oriLen = len(self.hashArray)
         modLen = len(self.editedFileHashArray)
         print("orilen = {} || modlen = {}".format(oriLen,modLen))
+        comparedResult = ""
         if(oriLen == modLen):
             i = 0
             while(i<oriLen):
                 if(self.hashArray[i] != self.editedFileHashArray[i]):
                     origData = self.unhashedDataArray[i]
                     editedData = self.editedFileUnhashedDataArray[i]
-                    print("Original Data: {} VS Edited Data: {}".format(origData,editedData))
+                    comparedResult += "Original Data: {} VS Edited Data: {}\n".format(origData,editedData)
+                    # print("Original Data: {} VS Edited Data: {}".format(origData,editedData))
                 i+=1
 
         elif(oriLen > modLen):
@@ -59,7 +60,8 @@ class FileDataChecker:
                 if(self.hashArray[i] != self.editedFileHashArray[i]):
                     origData = self.unhashedDataArray[i]
                     editedData = self.editedFileUnhashedDataArray[i]
-                    print("Original Data: {} VS Edited Data: {}".format(origData,editedData))
+                    comparedResult += "Original Data: {} VS Edited Data: {}\n".format(origData,editedData)
+                    # print("Original Data: {} VS Edited Data: {}".format(origData,editedData))
                 i+=1
 
             i = modLen
@@ -68,8 +70,8 @@ class FileDataChecker:
                 temp = str(self.unhashedDataArray[i],"utf-8")
                 leftData += temp[-1]
                 i+=1
-
-            print("This data is not there in the edited data: {}".format(leftData))
+            comparedResult += "This data is not there in the edited data: {}".format(leftData)
+            # print("This data is not there in the edited data: {}".format(leftData))
     
 
         else:       # modLen > orilen
@@ -78,7 +80,8 @@ class FileDataChecker:
                 if(self.hashArray[i] != self.editedFileHashArray[i]):
                     origData = self.unhashedDataArray[i]
                     editedData = self.editedFileUnhashedDataArray[i]
-                    print("Original Data: {} VS Edited Data: {}".format(origData,editedData))
+                    comparedResult += "Original Data: {} VS Edited Data: {}\n".format(origData,editedData)
+                    # print("Original Data: {} VS Edited Data: {}".format(origData,editedData))
                 i+=1
 
             i = oriLen
@@ -87,5 +90,14 @@ class FileDataChecker:
                 temp = str(self.editedFileUnhashedDataArray[i],"utf-8")
                 leftData += temp[-1]
                 i+=1
+            comparedResult += "This data is not there in the edited data: {}".format(leftData)
+            # print("This data is not there in the original data: {}".format(leftData))
+        # print(comparedResult)
+        return comparedResult
+# 81e37fa4f8dd
 
-            print("This data is not there in the original data: {}".format(leftData))
+# fileDataChecker = FileDataChecker("./data.txt","a5e099824b50")
+# fileDataChecker.readFileData()
+# fileDataChecker.getHasherData()
+# fileDataChecker.hasher()
+# fileDataChecker.compareData()
