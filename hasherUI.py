@@ -14,24 +14,40 @@ class HasherUI:
     def chooseFile(self):
         inputFile = filedialog.askopenfile(mode="r")
         self.fileName = inputFile.name
-        print(self.fileName)
         self.fileHasher = FileHasher(self.fileName)
         self.fileHasher.readFileData()
-        # print(self.fileHasher.fileData)
-        self.fileHasher.hasher()
-        l = Label(self.root, text="Key = {} (Save it)".format(self.fileHasher.key), bg="red")
-        l.place(x=95,y=120)
-
+        self.saveData()
 
     def getFileName(self):
-        btn = Button(self.root, text="Choose File",command=self.chooseFile)
-        btn.place(x=150,y=200)
+        self.chooseBtn = Button(self.root, text="Choose File",command=self.chooseFile)
+        self.chooseBtn.place(x=150,y=200)
+    
+
+
+    def saveFun(self):
+        self.fileHasher.saveData()
+        l = Label(self.root, text="Save Successful", bg="red")
+        l.place(x=100,y=150)
+
+    def saveData(self):
+        # get the key
+        self.fileHasher.hasher()
+        keyLabel = Label(self.root, text="Key = {} (Save it)".format(self.fileHasher.key), bg="red")
+        keyLabel.place(x=95,y=120)
+
+        # removing the choose file name
+        self.chooseBtn.destroy()
         
-        self.root.mainloop()  
+        # saving data to database
+        self.saveBtn = Button(self.root, text="Save",command=self.saveFun())
+        self.saveBtn.place(x=150,y=200)
+        self.saveBtn.destroy()
+
         
 hasherUI = HasherUI()
 hasherUI.getFileName()
-
+# hasherUI.saveData()
+hasherUI.root.mainloop()
 
 # fileHasher = FileHasher("./data.txt") done
 # fileHasher.readFileData() done

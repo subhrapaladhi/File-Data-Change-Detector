@@ -37,8 +37,5 @@ class FileHasher:
         client = MongoClient("mongodb+srv://subhra:qWT6ZfofeDcQoXnn@cluster0.stksg.mongodb.net/change_detector?retryWrites=true&w=majority")
         db = client['change_detector']
         hasher_data = db['hasher_data']
-
-        
-        
         data = {"_id": self.key, "hashedDataArray": self.hashArray, "unhashedDataArray": self.unhashedDataArray}
         hasher_data.insert_one(data)
