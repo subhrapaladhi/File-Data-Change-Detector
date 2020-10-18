@@ -24,19 +24,21 @@ class FileHasher:
                 break
             substr = self.fileData[start:end]
             self.unhashedDataArray.append(substr)
-            # print(substr)
+            print(substr)
             result = hashlib.sha256(substr).digest()
             self.hashArray.append(result)
             start +=1 
             end +=1
+        
+        self.key = str(uuid.uuid4())[-12:]
+        print("key = {}".format(self.key))
 
     def saveData(self):
         client = MongoClient("mongodb+srv://subhra:qWT6ZfofeDcQoXnn@cluster0.stksg.mongodb.net/change_detector?retryWrites=true&w=majority")
         db = client['change_detector']
         hasher_data = db['hasher_data']
 
-        self.key = str(uuid.uuid4())[-12:]
-        print("key = {}".format(self.key))
+        
         
         data = {"_id": self.key, "hashedDataArray": self.hashArray, "unhashedDataArray": self.unhashedDataArray}
         hasher_data.insert_one(data)
