@@ -66,7 +66,8 @@ class FileDataChecker:
                 if(self.hashArray[i] != self.editedFileHashArray[i]):
                     origData = self.unhashedDataArray[i]
                     editedData = self.editedFileUnhashedDataArray[i]
-                    comparedResult += "Original Data: {} VS Edited Data: {}\n".format(origData,editedData)
+                    # comparedResult += "Original Data: {} VS Edited Data: {}\n".format(origData,editedData)
+                    T.insert(END,"Original Data: {} VS Edited Data: {}\n".format(origData,editedData))
                     # print("Original Data: {} VS Edited Data: {}".format(origData,editedData))
                 i+=1
 
@@ -86,7 +87,8 @@ class FileDataChecker:
                 if(self.hashArray[i] != self.editedFileHashArray[i]):
                     origData = self.unhashedDataArray[i]
                     editedData = self.editedFileUnhashedDataArray[i]
-                    comparedResult += "Original Data: {} VS Edited Data: {}\n".format(origData,editedData)
+                    # comparedResult += "Original Data: {} VS Edited Data: {}\n".format(origData,editedData)
+                    T.insert(END,"Original Data: {} VS Edited Data: {}\n".format(origData,editedData))
                     # print("Original Data: {} VS Edited Data: {}".format(origData,editedData))
                 i+=1
 
@@ -96,11 +98,10 @@ class FileDataChecker:
                 temp = str(self.editedFileUnhashedDataArray[i],"utf-8")
                 leftData += temp[-1]
                 i+=1
-            comparedResult += "This data is not there in the edited data: {}".format(leftData)
+            # comparedResult += "This data is not there in the edited data: {}".format(leftData)
+            T.insert(END,"This data is not there in the edited data: {}".format(leftData))
             print("This data is not there in the original data: {}".format(leftData))
         print(comparedResult)
-        # return comparedResult
-        T.insert(END,comparedResult)
 
 
 
