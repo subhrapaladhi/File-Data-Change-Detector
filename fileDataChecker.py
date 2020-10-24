@@ -48,60 +48,61 @@ class FileDataChecker:
         comparedResult = ""
         if(oriLen == modLen):
 
-            if(self.hashArray[0] == self.editedFileHashArray[0]):
-                comparedResult = self.hashArray[0]
-
+            # if(self.hashArray[0] == self.editedFileHashArray[0]):
+            T.insert(END,"{}".format(str(self.editedFileUnhashedDataArray[0],"utf-8")))
             i = 1
             while(i<oriLen):
                 if(self.hashArray[i] != self.editedFileHashArray[i]):
-                    origData = self.unhashedDataArray[i]
-                    editedData = self.editedFileUnhashedDataArray[i]
-                    comparedResult += "Original Data: {} VS Edited Data: {}\n".format(origData,editedData)
-                    # print("Original Data: {} VS Edited Data: {}".format(origData,editedData))
+                    # highlight this text
+                    temp = str(self.editedFileUnhashedDataArray[i],"utf-8")
+                    T.insert(END,temp[-1])
+                else:
+                    temp = str(self.editedFileUnhashedDataArray[i],"utf-8")
+                    T.insert(END,temp[-1])
+
                 i+=1
 
         elif(oriLen > modLen):
-            i = 0
+            # if(self.hashArray[0] == self.editedFileHashArray[0]):
+            T.insert(END,"{}".format(str(self.editedFileUnhashedDataArray[0],"utf-8")))
+            i = 1
             while(i<modLen):
                 if(self.hashArray[i] != self.editedFileHashArray[i]):
-                    origData = self.unhashedDataArray[i]
-                    editedData = self.editedFileUnhashedDataArray[i]
-                    # comparedResult += "Original Data: {} VS Edited Data: {}\n".format(origData,editedData)
-                    T.insert(END,"Original Data: {} VS Edited Data: {}\n".format(origData,editedData))
-                    # print("Original Data: {} VS Edited Data: {}".format(origData,editedData))
+                    #highlight this text
+                    temp = str(self.editedFileUnhashedDataArray[i],"utf-8")
+                    T.insert(END,temp[-1])
+                else:
+                    temp = str(self.editedFileUnhashedDataArray[i],"utf-8")
+                    T.insert(END,temp[-1])
                 i+=1
 
             i = modLen
-            leftData = ""
             while(i<oriLen):
-                temp = str(self.unhashedDataArray[i],"utf-8")
-                leftData += temp[-1]
+                #highlight this text
+                temp = str(self.editedFileUnhashedDataArray[i],"utf-8")
+                T.insert(END,temp[-1])
                 i+=1
-            comparedResult += "This data is not there in the edited data: {}".format(leftData)
-            # print("This data is not there in the edited data: {}".format(leftData))
-    
 
         else:       # modLen > orilen
-            i = 0
+            # if(self.hashArray[0] == self.editedFileHashArray[0]):
+            T.insert(END,"{}".format(str(self.editedFileUnhashedDataArray[0],"utf-8")))
+            i = 1
             while(i<oriLen):
                 if(self.hashArray[i] != self.editedFileHashArray[i]):
-                    origData = self.unhashedDataArray[i]
-                    editedData = self.editedFileUnhashedDataArray[i]
-                    # comparedResult += "Original Data: {} VS Edited Data: {}\n".format(origData,editedData)
-                    T.insert(END,"Original Data: {} VS Edited Data: {}\n".format(origData,editedData))
-                    # print("Original Data: {} VS Edited Data: {}".format(origData,editedData))
+                    #highlight this text
+                    temp = str(self.editedFileUnhashedDataArray[i],"utf-8")
+                    T.insert(END,temp[-1])
+                else:
+                    #highlight this text
+                    temp = str(self.editedFileUnhashedDataArray[i],"utf-8")
+                    T.insert(END,temp[-1])
                 i+=1
 
-            i = oriLen
-            leftData = ""
+            i = oriLen    
             while(i<modLen):
                 temp = str(self.editedFileUnhashedDataArray[i],"utf-8")
-                leftData += temp[-1]
+                T.insert(END,temp[-1])
                 i+=1
-            # comparedResult += "This data is not there in the edited data: {}".format(leftData)
-            T.insert(END,"This data is not there in the edited data: {}".format(leftData))
-            print("This data is not there in the original data: {}".format(leftData))
-        print(comparedResult)
 
 
 
