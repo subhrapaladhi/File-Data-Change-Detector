@@ -1,5 +1,7 @@
 import hashlib
 from pymongo import MongoClient
+from tkinter import *
+from tkinter import filedialog
 
 class FileDataChecker:
     def __init__(self,filename,key):
@@ -39,13 +41,17 @@ class FileDataChecker:
             print(substr)
             # print(result)
     
-    def compareData(self):
+    def compareData(self,T):
         oriLen = len(self.hashArray)
         modLen = len(self.editedFileHashArray)
         print("orilen = {} || modlen = {}".format(oriLen,modLen))
         comparedResult = ""
         if(oriLen == modLen):
-            i = 0
+
+            if(self.hashArray[0] == self.editedFileHashArray[0]):
+                comparedResult = self.hashArray[0]
+
+            i = 1
             while(i<oriLen):
                 if(self.hashArray[i] != self.editedFileHashArray[i]):
                     origData = self.unhashedDataArray[i]
@@ -91,10 +97,12 @@ class FileDataChecker:
                 leftData += temp[-1]
                 i+=1
             comparedResult += "This data is not there in the edited data: {}".format(leftData)
-            # print("This data is not there in the original data: {}".format(leftData))
-        # print(comparedResult)
-        return comparedResult
-# 81e37fa4f8dd
+            print("This data is not there in the original data: {}".format(leftData))
+        print(comparedResult)
+        # return comparedResult
+        T.insert(END,comparedResult)
+
+
 
 # fileDataChecker = FileDataChecker("./data.txt","a5e099824b50")
 # fileDataChecker.readFileData()

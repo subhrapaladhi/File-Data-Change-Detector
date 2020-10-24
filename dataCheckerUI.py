@@ -43,20 +43,10 @@ class DataCheckerUI:
         self.fileDataChecker.readFileData()
         self.fileDataChecker.getHasherData()
         self.fileDataChecker.hasher()
-        self.comparedResult = self.fileDataChecker.compareData()
-
-        if(self.comparedResult == ""):
-            T = Text(self.root,height=25,width=98)
-            T.pack()
-            T.place(x=5,y=90)
-            T.insert(END,"The data in the two files are same")
-            print("The data in the two files are same")
-        else:
-            T = Text(self.root,height=25,width=98)
-            T.pack()
-            T.place(x=5,y=90)
-            T.insert(END,self.comparedResult)
-            print(self.comparedResult)
+        T = Text(self.root,height=25,width=98)
+        T.pack()
+        T.place(x=5,y=90)
+        self.fileDataChecker.compareData(T)
 
 
 dataCheckerUI = DataCheckerUI()
