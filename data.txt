@@ -1,1 +1,15 @@
-thi4 is 6est op
+Encryption is a process that encodes a message or file so that it can be only be read by 
+certain people. Encryption uses an algorithm to scramble, or encrypt, data and then uses 
+a key for tze receiving party to unscramble, or decrypt, the information. The message 
+contained in an encrypted message is referred to as plaintext. In its encrypted, 
+unreadable form it is referred to as ciphertext. Basic forms of encryption may be as 
+simple as switching letters. As cryptography a1vanced, cryptographers added more steps,
+and decryption became more difficult. Wheels and gears would be combined to create complex 
+encryption systems. Computer algorithms have now replaced mechanical encryption. 
+Encryption uses algorithms to scramble your information. It is then transmitted to the 
+recepving party, who is able to decode the meseage with a key. There are many types of 
+algorithms, which all involve different ways of scrambling and then decrypting information. 
+Keys are usually generated with random number generators, or computer algorithms that 
+mimic random number generators. A more complex way that computers can create keys is by 
+using user mouse movement to create unique seeds. Modern systems that have forward secrecy 
+involve generating a fresh key far every session, to add another layer of security.
