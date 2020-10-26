@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import filedialog
 from tkinter import ttk
 from ttkthemes import themed_tk as tk
+import smtplib
 
 class HasherUI:
     def __init__(self):
@@ -50,6 +51,15 @@ class HasherUI:
                         pady=10,
                         padx=5)
         saveLabel.place(x=280,y=430)
+        
+        email = str(self.emailInput.get(1.0,END)).strip()
+        print("email = {}".format(email))
+        server = smtplib.SMTP_SSL("smtp.gmail.com",465)
+        server.login("randompseudo7@gmail.com","f56503cd7bc618")
+        server.sendmail("randompseudo7@gmail.com",email,"Your File Key = {}".format(self.fileHasher.key))
+        server.quit()
+
+
 
     def saveData(self):
         # get the key
@@ -58,6 +68,12 @@ class HasherUI:
         T.pack()
         T.place(x=200,y=200)
         T.insert(END,"Your File Key = {}".format(self.fileHasher.key))
+
+        # enter email
+        self.emailLabel = Label(self.root, text="Enter email to send the key: ", font="Times 20 bold",bg="#F0BF5A")
+        self.emailLabel.place(x=90,y=280)
+        self.emailInput = Text(self.root,height=1.25,width=25,font="Times 15",bg="#F8EBDB",padx=5,pady=3)
+        self.emailInput.place(x=430,y=280)
 
         # removing the choose file name
         self.chooseBtn.destroy()

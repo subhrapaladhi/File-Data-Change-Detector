@@ -10,17 +10,17 @@ class DataCheckerUI:
         self.root = tk.ThemedTk()
         self.root.get_themes()
         self.root.set_theme("plastik")
-        self.root.geometry("800x600")
+        self.root.geometry("1200x900")
         self.root.configure(bg="#F0BF5A")
         
         title = Label(self.root, text = "File Data Checker",font="Times 40 bold",bg="#F0BF5A") 
-        title.place(x=170,y=20)
+        title.place(x=390,y=40)
 
         # key text input
         self.keyLabel = Label(self.root, text="Enter key: ", font="Times 20 bold",bg="#F0BF5A")
-        self.keyLabel.place(x=220,y=120)
-        self.passInput = Text(self.root,height=1.25,width=20,font="Times 15",bg="#F8EBDB")
-        self.passInput.place(x=380,y=120)
+        self.keyLabel.place(x=420,y=200)
+        self.passInput = Text(self.root,height=1.25,width=20,font="Times 15",bg="#F8EBDB",padx=5,pady=3)
+        self.passInput.place(x=600,y=200)
 
         # choose button
         self.chooseBtn = Button(self.root, 
@@ -32,7 +32,7 @@ class DataCheckerUI:
                                 activebackground="#6DD88E",
                                 font="Times 17 bold"
                                 )
-        self.chooseBtn.place(x=325,y=380)
+        self.chooseBtn.place(x=540,y=550)
 
         # check data
         self.checkDataBtn = Button(self.root, 
@@ -46,7 +46,7 @@ class DataCheckerUI:
                                     )
         
         self.checkDataBtn.pack()
-        self.checkDataBtn.place(x=325,y=500)
+        self.checkDataBtn.place(x=540,y=725)
         
     
     def chooseFile(self):
@@ -64,17 +64,17 @@ class DataCheckerUI:
         self.fileDataChecker.getHasherData()
         self.fileDataChecker.hasher()
 
-        T = Text(self.root,height=25,width=98)
+        T = Text(self.root,height=35,width=115,padx=10,pady=10,font="Times 14",bg="#EAF6F3")
         T.pack()
-        T.place(x=5,y=90)
+        T.place(x=75,y=120)
         dataUnchanged = self.fileDataChecker.compareData(T)
-
+        self.checkDataBtn.place(x=325,y=450)
         if(dataUnchanged):
             self.dataUnchangedLabel = Label(self.root, text="The Data in the two files is unchanged",font="Times 20 bold",bg="#F0BF5A")
-            self.dataUnchangedLabel.place(x=170,y=550)
+            self.dataUnchangedLabel.place(x=390,y=840)
         else:
             self.dataUnchangedLabel = Label(self.root, text="The edited data is marked in red color",font="Times 20 bold",bg="#F0BF5A")
-            self.dataUnchangedLabel.place(x=170,y=550)
+            self.dataUnchangedLabel.place(x=390,y=840)
 
 # 45b5ca201e7b
 

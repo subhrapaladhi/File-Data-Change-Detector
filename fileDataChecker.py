@@ -47,7 +47,7 @@ class FileDataChecker:
         modLen = len(self.editedFileHashArray)
         comparedResult = ""
         dataUnchanged = True
-        T.tag_configure("highlight",foreground="red")
+        T.tag_configure("highlight",foreground="#FF0000")
 
         if(oriLen == modLen):
 
