@@ -49,7 +49,7 @@ class HasherUI:
                         font="arial 22 bold",
                         pady=10,
                         padx=5)
-        saveLabel.place(x=290,y=430)
+        saveLabel.place(x=280,y=430)
 
     def saveData(self):
         # get the key

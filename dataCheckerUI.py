@@ -46,8 +46,19 @@ class DataCheckerUI:
         T = Text(self.root,height=25,width=98)
         T.pack()
         T.place(x=5,y=90)
-        self.fileDataChecker.compareData(T)
+        dataUnchanged = self.fileDataChecker.compareData(T)
 
+        if(dataUnchanged):
+            #do something
+            self.dataUnchangedLabel = Label(self.root, text="The Data in the two files is unchanged")
+            self.dataUnchangedLabel.config(font =("Courier", 15))
+            self.dataUnchangedLabel.place(x=170,y=550)
+        else:
+            self.dataUnchangedLabel = Label(self.root, text="The edited data is marked in red color")
+            self.dataUnchangedLabel.config(font =("Courier", 15))
+            self.dataUnchangedLabel.place(x=170,y=550)
+
+# 45b5ca201e7b
 
 dataCheckerUI = DataCheckerUI()
 dataCheckerUI.root.mainloop()

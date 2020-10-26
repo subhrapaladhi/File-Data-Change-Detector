@@ -39,15 +39,14 @@ class FileDataChecker:
             self.editedFileHashArray.append(result)
             start +=1 
             end +=1
-            print(substr)
+            # print(substr)
             # print(result)
     
     def compareData(self,T):
         oriLen = len(self.hashArray)
         modLen = len(self.editedFileHashArray)
-        print("orilen = {} || modlen = {}".format(oriLen,modLen))
         comparedResult = ""
-
+        dataUnchanged = True
         T.tag_configure("highlight",foreground="red")
 
         if(oriLen == modLen):
@@ -60,7 +59,7 @@ class FileDataChecker:
                     # highlight this text
                     temp = str(self.editedFileUnhashedDataArray[i],"utf-8")
                     T.insert(END,temp[-1],"highlight")
-                    
+                    dataUnchanged = False
                 else:
                     temp = str(self.editedFileUnhashedDataArray[i],"utf-8")
                     T.insert(END,temp[-1])
@@ -71,6 +70,7 @@ class FileDataChecker:
             # if(self.hashArray[0] == self.editedFileHashArray[0]):
             T.insert(END,"{}".format(str(self.editedFileUnhashedDataArray[0],"utf-8")))
             i = 1
+            dataUnchanged = False
             while(i<modLen):
                 if(self.hashArray[i] != self.editedFileHashArray[i]):
                     #highlight this text
@@ -92,6 +92,7 @@ class FileDataChecker:
             # if(self.hashArray[0] == self.editedFileHashArray[0]):
             T.insert(END,"{}".format(str(self.editedFileUnhashedDataArray[0],"utf-8")))
             i = 1
+            dataUnchanged = False
             while(i<oriLen):
                 if(self.hashArray[i] != self.editedFileHashArray[i]):
                     #highlight this text
@@ -108,3 +109,6 @@ class FileDataChecker:
                 temp = str(self.editedFileUnhashedDataArray[i],"utf-8")
                 T.insert(END,temp[-1],"highlight")
                 i+=1
+        return dataUnchanged
+
+        

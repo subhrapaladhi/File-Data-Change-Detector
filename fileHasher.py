@@ -24,7 +24,7 @@ class FileHasher:
                 break
             substr = self.fileData[start:end]
             self.unhashedDataArray.append(substr)
-            print(substr)
+            # print(substr)
             result = hashlib.sha256(substr).digest()
             self.hashArray.append(result)
             start +=1 
