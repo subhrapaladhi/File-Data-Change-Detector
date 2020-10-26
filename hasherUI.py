@@ -34,7 +34,7 @@ class HasherUI:
                                 activeforeground="#4B574F",
                                 activebackground="#6DD88E",
                                 font="arial 15",
-                                pady=2,
+                                pady=2
                                 )
         self.chooseBtn.place(x=320,y=460)
     
