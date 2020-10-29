@@ -3,6 +3,7 @@ import hashlib
 from pymongo import MongoClient
 from tkinter import *
 from tkinter import filedialog
+import os
 
 class FileDataChecker:
     def __init__(self,filename,key):
@@ -19,6 +20,7 @@ class FileDataChecker:
         db = client['change_detector']
         hasher_data = db['hasher_data']
         x = hasher_data.find_one({"_id":self.key})
+        self.salt = x["salt"]
         self.unhashedDataArray = x["unhashedDataArray"]
         self.hashArray = x["hashedDataArray"]
     
@@ -34,8 +36,7 @@ class FileDataChecker:
                 break
             substr = self.fileData[start:end]
             self.editedFileUnhashedDataArray.append(substr)
-
-            result = hashlib.sha256(substr).digest()
+            result = hashlib.sha256(substr+self.salt).digest()
             self.editedFileHashArray.append(result)
             start +=1 
             end +=1
