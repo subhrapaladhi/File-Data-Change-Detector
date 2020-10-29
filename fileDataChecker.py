@@ -21,7 +21,6 @@ class FileDataChecker:
         hasher_data = db['hasher_data']
         x = hasher_data.find_one({"_id":self.key})
         self.salt = x["salt"]
-        self.unhashedDataArray = x["unhashedDataArray"]
         self.hashArray = x["hashedDataArray"]
     
     def hasher(self):
@@ -40,20 +39,21 @@ class FileDataChecker:
             self.editedFileHashArray.append(result)
             start +=1 
             end +=1
-            # print(substr)
-            # print(result)
     
     def compareData(self,T):
         oriLen = len(self.hashArray)
         modLen = len(self.editedFileHashArray)
         comparedResult = ""
+        extraText=""
         dataUnchanged = True
         T.tag_configure("highlight",foreground="#FF0000")
 
         if(oriLen == modLen):
 
-            # if(self.hashArray[0] == self.editedFileHashArray[0]):
-            T.insert(END,"{}".format(str(self.editedFileUnhashedDataArray[0],"utf-8")))
+            if(self.hashArray[0] == self.editedFileHashArray[0]):
+                T.insert(END,"{}".format(str(self.editedFileUnhashedDataArray[0],"utf-8")))
+            else:
+                T.insert(END,"{}".format(str(self.editedFileUnhashedDataArray[0],"utf-8")),"highlight")
             i = 1
             while(i<oriLen):
                 if(self.hashArray[i] != self.editedFileHashArray[i]):
@@ -68,8 +68,10 @@ class FileDataChecker:
                 i+=1
 
         elif(oriLen > modLen):
-            # if(self.hashArray[0] == self.editedFileHashArray[0]):
-            T.insert(END,"{}".format(str(self.editedFileUnhashedDataArray[0],"utf-8")))
+            if(self.hashArray[0] == self.editedFileHashArray[0]):
+                T.insert(END,"{}".format(str(self.editedFileUnhashedDataArray[0],"utf-8")))
+            else:
+                T.insert(END,"{}".format(str(self.editedFileUnhashedDataArray[0],"utf-8")),"highlight")
             i = 1
             dataUnchanged = False
             while(i<modLen):
@@ -82,16 +84,11 @@ class FileDataChecker:
                     T.insert(END,temp[-1])
                 i+=1
 
-            i = modLen
-            while(i<oriLen):
-                #highlight this text
-                temp = str(self.editedFileUnhashedDataArray[i],"utf-8")
-                T.insert(END,temp[-1],"highlight")
-                i+=1
-
         else:       # modLen > orilen
-            # if(self.hashArray[0] == self.editedFileHashArray[0]):
-            T.insert(END,"{}".format(str(self.editedFileUnhashedDataArray[0],"utf-8")))
+            if(self.hashArray[0] == self.editedFileHashArray[0]):
+                T.insert(END,"{}".format(str(self.editedFileUnhashedDataArray[0],"utf-8")))
+            else:
+                T.insert(END,"{}".format(str(self.editedFileUnhashedDataArray[0],"utf-8")),"highlight")
             i = 1
             dataUnchanged = False
             while(i<oriLen):
@@ -110,6 +107,18 @@ class FileDataChecker:
                 temp = str(self.editedFileUnhashedDataArray[i],"utf-8")
                 T.insert(END,temp[-1],"highlight")
                 i+=1
-        return dataUnchanged
+        message=""
+
+        if(dataUnchanged):
+            message = "The Data in the two files is unchanged"
+        else:
+            if(oriLen==modLen):
+                message="The edited data is marked in red color"
+            elif(oriLen<modLen):
+                message="Some data is extra in the Edited file"
+            else:
+                message="Some data is missing from the Edited file"
+
+        return message
 
         
