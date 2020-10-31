@@ -1,4 +1,3 @@
-# e7ec3560fe56
 import hashlib
 from pymongo import MongoClient
 from tkinter import *
@@ -20,8 +19,14 @@ class FileDataChecker:
         db = client['change_detector']
         hasher_data = db['hasher_data']
         x = hasher_data.find_one({"_id":self.key})
+
+        if(x==None):
+            return False
+        
         self.salt = x["salt"]
         self.hashArray = x["hashedDataArray"]
+
+        return True
     
     def hasher(self):
         self.editedFileHashArray = []

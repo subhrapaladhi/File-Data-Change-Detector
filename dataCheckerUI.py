@@ -61,16 +61,23 @@ class DataCheckerUI:
 
         self.fileDataChecker = FileDataChecker(self.fileName,self.key)
         self.fileDataChecker.readFileData()
-        self.fileDataChecker.getHasherData()
-        self.fileDataChecker.hasher()
+        keyValid = self.fileDataChecker.getHasherData()
 
-        T = Text(self.root,height=35,width=115,padx=10,pady=10,font="Times 14",bg="#EAF6F3")
-        T.pack()
-        T.place(x=75,y=120)
-        message = self.fileDataChecker.compareData(T)
-        self.checkDataBtn.place(x=325,y=450)
-        self.dataUnchangedLabel = Label(self.root, text=message,font="Times 20 bold",bg="#F0BF5A")
-        self.dataUnchangedLabel.place(x=390,y=840)
+        if(keyValid):
+            self.fileDataChecker.hasher()
+            print("valid key")
+            T = Text(self.root,height=35,width=115,padx=10,pady=10,font="Times 14",bg="#EAF6F3")
+            T.pack()
+            T.place(x=75,y=120)
+            message = self.fileDataChecker.compareData(T)
+            self.checkDataBtn.place(x=325,y=450)
+            self.dataUnchangedLabel = Label(self.root, text=message,font="Times 20 bold",bg="#F0BF5A")
+            self.dataUnchangedLabel.place(x=390,y=840)
+        
+        else:
+            print("invalid key")
+            self.invalidKeyLabel = Label(self.root, text="Key Not Valid", font="Times 30 bold",bg="#F0BF5A")
+            self.invalidKeyLabel.place(x=500,y=400)
 
 dataCheckerUI = DataCheckerUI()
 dataCheckerUI.root.mainloop()
