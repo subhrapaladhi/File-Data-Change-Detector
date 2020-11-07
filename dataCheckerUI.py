@@ -52,7 +52,25 @@ class DataCheckerUI:
     def chooseFile(self):
         inputFile = filedialog.askopenfile(mode="r")
         self.fileName = inputFile.name
-        print(self.fileName)
+        fileName = inputFile.name
+        
+        fileNameLabel = Label(self.root, 
+                        text="Selected File: ", 
+                        bg="#F0BF5A",
+                        fg="#000000",
+                        font="arial 20 bold",
+                        pady=10,
+                        padx=5)
+        fileNameLabel.place(x=100,y=350)
+
+        fileNameDisplay = Label(self.root, 
+                        text=fileName, 
+                        bg="#F0BF5A",
+                        fg="#000000",
+                        font="arial 15",
+                        pady=10,
+                        padx=5)
+        fileNameDisplay.place(x=280,y=355)
 
 
     def dataCheck(self):

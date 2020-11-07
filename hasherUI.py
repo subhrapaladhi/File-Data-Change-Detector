@@ -21,7 +21,26 @@ class HasherUI:
 
     def chooseFile(self):
         inputFile = filedialog.askopenfile(mode="r")
-        # self.fileName = inputFile.name
+        fileName = inputFile.name
+        
+        fileNameLabel = Label(self.root, 
+                        text="Selected File: ", 
+                        bg="#F0BF5A",
+                        fg="#000000",
+                        font="arial 13 bold",
+                        pady=10,
+                        padx=5)
+        fileNameLabel.place(x=50,y=380)
+
+        fileNameDisplay = Label(self.root, 
+                        text=fileName, 
+                        bg="#F0BF5A",
+                        fg="#000000",
+                        font="arial 11",
+                        pady=10,
+                        padx=5)
+        fileNameDisplay.place(x=170,y=382)
+        
         self.fileHasher = FileHasher(inputFile.name)
         self.fileHasher.readFileData()
         self.saveData()
