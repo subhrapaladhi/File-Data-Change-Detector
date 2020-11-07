@@ -21,7 +21,7 @@ class HasherUI:
 
     def chooseFile(self):
         inputFile = filedialog.askopenfile(mode="r")
-        fileName = inputFile.name
+        self.fileName = inputFile.name
         
         fileNameLabel = Label(self.root, 
                         text="Selected File: ", 
@@ -33,7 +33,7 @@ class HasherUI:
         fileNameLabel.place(x=50,y=380)
 
         fileNameDisplay = Label(self.root, 
-                        text=fileName, 
+                        text=self.fileName, 
                         bg="#F0BF5A",
                         fg="#000000",
                         font="arial 11",
@@ -71,11 +71,13 @@ class HasherUI:
                         padx=5)
         saveLabel.place(x=280,y=430)
         
+        file = self.fileName.split('/')[-1]
         email = str(self.emailInput.get(1.0,END)).strip()
         print("email = {}".format(email))
         server = smtplib.SMTP_SSL("smtp.gmail.com",465)
         server.login("randompseudo7@gmail.com","f56503cd7bc618")
-        server.sendmail("randompseudo7@gmail.com",email,"Your File Key = {}".format(self.fileHasher.key))
+        emailData = "File name = {}\nYour File Key = {}".format(file,self.fileHasher.key)
+        server.sendmail("randompseudo7@gmail.com",email,emailData)
         server.quit()
 
 
