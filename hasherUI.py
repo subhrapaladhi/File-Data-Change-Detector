@@ -75,9 +75,9 @@ class HasherUI:
         email = str(self.emailInput.get(1.0,END)).strip()
         print("email = {}".format(email))
         server = smtplib.SMTP_SSL("smtp.gmail.com",465)
-        server.login("randompseudo7@gmail.com","f56503cd7bc618")
+        server.login("<ENTER YOUR EMAIL>","<ENTER YOUR EMAIL PASSWORD>")
         emailData = "File name = {}\nYour File Key = {}".format(file,self.fileHasher.key)
-        server.sendmail("randompseudo7@gmail.com",email,emailData)
+        server.sendmail("<ENTER YOUR EMAIL>",email,emailData)
         server.quit()
 
 
