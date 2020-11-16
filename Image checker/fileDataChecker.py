@@ -15,7 +15,7 @@ class FileDataChecker:
         file.close()
 
     def getHasherData(self):
-        client = MongoClient("mongodb+srv://subhra:qWT6ZfofeDcQoXnn@cluster0.stksg.mongodb.net/change_detector?retryWrites=true&w=majority")
+        client = MongoClient("mongodb+srv://subhra:<MONGODB KEY>@cluster0.stksg.mongodb.net/change_detector?retryWrites=true&w=majority")
         db = client['change_detector']
         hasher_data = db['hasher_data']
         x = hasher_data.find_one({"_id":self.key})

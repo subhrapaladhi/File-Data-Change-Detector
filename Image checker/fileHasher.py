@@ -35,7 +35,7 @@ class FileHasher:
         print("key = {}".format(self.key))
 
     def saveData(self):
-        client = MongoClient("mongodb+srv://subhra:qWT6ZfofeDcQoXnn@cluster0.stksg.mongodb.net/change_detector?retryWrites=true&w=majority")
+        client = MongoClient("mongodb+srv://subhra:<MONGODB KEY>@cluster0.stksg.mongodb.net/change_detector?retryWrites=true&w=majority")
         db = client['change_detector']
         hasher_data = db['hasher_data']
         data = {"_id": self.key, "salt":self.salt, "hashedDataArray": self.hashArray, "unhashedDataArray": self.unhashedDataArray}
