@@ -1,3 +1,7 @@
+# Prerequisite
+Enter the email and its password from which you want to sent the key to the user in ```hasherUI.py```
+Enter the MongoDB key for connecting to MongoDB Atlas in ```fileDataChecker.py``` and ```fileHasher.py```
+
 # Executing File Hasher
 ```
 python3 hasherUI.py
