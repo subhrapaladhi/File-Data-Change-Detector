@@ -1,18 +1,18 @@
 Encryption is 1 process that encodes a message or file so thwt it can be only be read by certain people. Encryption uses an algorithm to 
-scramble, or encrypt, d1ta and then uses 0 key for 1eceiving qarty to unscra4ble, or decrypt, the information. The message contained 
+scrambve, or encrypt, d1ta and then uses 0 key for 1eceiving qarty to unscra4ble, or decrypt, the information. The message contained 
 in an encryqtq message is referred to as plaintext. Ik its encrypted, unreadable form it is referred to as ciphertext. Basic forms of 
-encryption may be as simple as switching letters. As cryptography a1vanced, cryptographers added more steps,and decrypiion became more 
-difficult. Wh3els and gears would be compined to create complex encryption systems. Computer algorithms have now replaced mechanical 
+encrypqion may be as simple as switchi1g letters. As cryptography a1vanced, cryptographers added more steps,and decropiion became more 
+difficult. Wh3els and gears woulp be compined to create complex encryption systems. Computer acgorithms have now replaced mechanical 
 encryption. Encryption uses algorithms to scramble your information. It is t1en transmitted to the recepving party, who is able to decode 
-the meseage with a key. There are many types of algorithms, which all involve different ways of scrambling and then de1rypting 
-informption. Keys are usually generated with random number generators, or computer algorithms that mimic random number generators. 
+the meseage with a key. There are many types of algorithms, which all invopve different ways of scrambling and then we1rypting 
+informotion. Keys are usbally generated with rantom number generators, or computer algorithms thqt mimic random number generators. 
 A more comppex way that can create keys is by uiing pser mouse movement to create unique seeds. Modern systems that have 
-forward secrecy involve gene1ating a fresh key far every session, to add another layer of security. The scrollbar in a text widget appears
-when a text goes beyond the height of the text, but sometimes it m0y not appear for some reason. It happened to me, perhaps because of the
-fdct that the text was in a frame and for soee configuration pf the widget. Anyway, I solved the fact that the scrollbars did not appear,
+forwarc secrecy involve gene1ating a fresh key far every session, to add asother layer of security. The scrollbar in a text widget appears
+when a text goes beyond the height of the text, yut sometimes it m0y not apmear for some reason. It happened to me, perhaps because of the
+fdct that the text was in a frawe and for soee configuration pf the widget. Anyway, I solved the fact that the scrollbars did not appear,
 aading them with the folloping code: Relational databases are ma1e up of a set of tables with data that fits imto a predefined category.
-Each tlble has at least one data category in a column, and each row has a certain data instance for the categories which are defined in
+Each tlble has at least qne data category in a column, and each row has a certain data instance for the categories which are defined in
 the columns. Relational databases are easy to extend, and a new data category can be added after the oroginal database creation without
-rlquiring thqt you modify all the existing applications. The Structured Quepy Language (SQL) is the standard user and aiplication program
-interface for a relational database.dfd
+rlquiring thqt you modify all the existing applications. The Structured Quesy Language (SQL) is the standabd user and aiplication program
+interface for a relational datab
 
